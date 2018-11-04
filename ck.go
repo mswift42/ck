@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
+	"net/http"
 )
 
 type Recipe struct {
@@ -15,13 +16,21 @@ type Recipe struct {
 	preptime   string
 }
 
+func queryUrl(searchterm string, page string) string {
+	return "https://www.chefkoch.de/rs/s" + page + "/" + searchterm + "/Rezepte.html#more2"
+}
+
 func main() {
-	doc, err := goquery.NewDocument("https://www.chefkoch.de/rs/s0/bohnen/Rezepte.html#more2")
+	res, err := http.Get("https://www.chefkoch.de/rs/s0/bohnen/Rezepte.html#more2")
+	if err != nil {
+		fmt.Println(err)
+	}
+	defer res.Body.Close()
+	doc, err := goquery.NewDocumentFromReader(res.Body)
 	if err != nil {
 		fmt.Println(err)
 	}
 	doc.Find(".search-list-item-title").Each(func(i int, s *goquery.Selection) {
 		fmt.Println(s.Text())
 	})
-
 }
