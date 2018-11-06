@@ -20,6 +20,38 @@ func queryUrl(searchterm string, page string) string {
 	return "https://www.chefkoch.de/rs/s" + page + "/" + searchterm + "/Rezepte.html#more2"
 }
 
+type RecipesSelection struct {
+	sel *goquery.Selection
+}
+
+func (rs *RecipesSelection) title() string {
+	return rs.sel.Find(".search-list-item-title").Text()
+}
+
+func (rs *RecipesSelection) subtitle() string {
+	return rs.sel.Find(".search-list-item-subtitle").Text()
+}
+
+func (rs *RecipesSelection) url() string {
+	return rs.sel.Find(".search-list-item > a").AttrOr("href", "")
+}
+
+func (rs *RecipesSelection) thumbnail() string {
+	return rs.sel.Find(".search-list-item-image > img").AttrOr("srcset", "")
+}
+
+func (rs *RecipesSelection) rating() string {
+	return rs.sel.Find(".search-list-item-uservotes-stars").Text()
+}
+
+func (rs *RecipesSelection) difficulty() string {
+	return rs.sel.Find(".search-list-item-difficulty").Text()
+}
+
+func (rs *RecipesSelection) preptime() string {
+	return rs.sel.Find(".search-list-item-preptime").Text()
+}
+
 func main() {
 	res, err := http.Get("https://www.chefkoch.de/rs/s0/bohnen/Rezepte.html#more2")
 	if err != nil {
