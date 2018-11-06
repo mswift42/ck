@@ -7,13 +7,13 @@ import (
 )
 
 type Recipe struct {
-	title      string
-	subtitle   string
-	url        string
-	thumbnail  string
-	rating     string
-	difficulty string
-	preptime   string
+	Title      string `json:"title"`
+	Subtitle   string `json:"subtitle"`
+	Url        string `json:"url"`
+	Thumbnail  string `json:"thumbnai"`
+	Rating     string `json:"rating"`
+	Difficulty string `json:"difficulty"`
+	Preptime   string `json:"preptime"`
 }
 
 func queryUrl(searchterm string, page string) string {
