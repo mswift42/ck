@@ -39,6 +39,26 @@ func TestQueryURL(t *testing.T) {
 
 }
 
+var bohenrecipes = []struct {
+	title      string
+	subtitle   string
+	url        string
+	thumbnail  string
+	rating     string
+	difficulty string
+	preptime   string
+}{
+	{
+		"Grüne Bohnen im Speckmantel",
+		"Bohnen waschen und die Spitzen abschneiden. Bohnenkraut, Knoblauch, zerdrückte Pfefferkörner und Salz mit Öl kurz anrösten. 2 Lite...",
+		"https://www.chefkoch.de/rezepte/563451154612271/Gruene-Bohnen-im-Speckmantel.html",
+		"https://static.chefkoch-cdn.de/rs/bilder/56345/gruene-bohnen-im-speckmantel-1124631-150x150.jpg",
+		"4.32",
+		"simpel",
+		"30 min",
+	},
+}
+
 func TestNewRecipe(t *testing.T) {
 	file, err := ioutil.ReadFile("testhtml/bohnen.html")
 	if err != nil {
