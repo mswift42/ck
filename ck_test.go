@@ -1,6 +1,11 @@
 package main
 
-import "testing"
+import (
+	"bytes"
+	"github.com/PuerkitoBio/goquery"
+	"io/ioutil"
+	"testing"
+)
 
 var queryurls = []struct {
 	st   string
@@ -30,5 +35,27 @@ func TestQueryURL(t *testing.T) {
 		if qu != i.want {
 			t.Errorf("Expected qu to be %s, got: %s", i.want, qu)
 		}
+	}
+
+}
+
+func TestNewRecipe(t *testing.T) {
+	file, err := ioutil.ReadFile("testhtml/bohnen.html")
+	if err != nil {
+		t.Error(err)
+	}
+	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(file))
+	if err != nil {
+		panic(err)
+	}
+	var results []*Recipe
+	doc.Find(".search-list-item").Each(func(i int, sel *goquery.Selection) {
+		results = append(results, newRecipe(sel))
+	})
+	if len(results) != 30 {
+		t.Error("Expected length of results to be 30, got: ", len(results))
+	}
+	if results[0].Title != "Grüne Bohnen im Speckmantel" {
+		t.Error("Expected title to be ... got: ", results[0].Title)
 	}
 }
