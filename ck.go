@@ -52,6 +52,13 @@ func (rs *RecipesSelection) preptime() string {
 	return rs.sel.Find(".search-list-item-preptime").Text()
 }
 
+func newRecipe(sel *goquery.Selection) *Recipe {
+	rs := &RecipesSelection{sel}
+	return &Recipe{rs.title(), rs.subtitle(),
+		rs.url(), rs.thumbnail(), rs.rating(), rs.difficulty(),
+		rs.preptime()}
+}
+
 func main() {
 	res, err := http.Get("https://www.chefkoch.de/rs/s0/bohnen/Rezepte.html#more2")
 	if err != nil {
