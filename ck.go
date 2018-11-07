@@ -41,7 +41,7 @@ func (rs *RecipesSelection) thumbnail() string {
 }
 
 func (rs *RecipesSelection) rating() string {
-	return rs.sel.Find(".search-list-item-uservotes-stars").Text()
+	return rs.sel.Find(".search-list-item-uservotes-stars").AttrOr("title", "")
 }
 
 func (rs *RecipesSelection) difficulty() string {
@@ -69,7 +69,7 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	doc.Find(".search-list-item-title").Each(func(i int, s *goquery.Selection) {
-		fmt.Println(s.Text())
+	doc.Find(".search-list-item").Each(func(i int, s *goquery.Selection) {
+		fmt.Print(newRecipe(s))
 	})
 }
