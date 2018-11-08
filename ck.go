@@ -17,6 +17,8 @@ type Recipe struct {
 	Preptime   string `json:"preptime"`
 }
 
+const CKPrefix = "https://www.chefkoch.de"
+
 func queryUrl(searchterm string, page string) string {
 	return "https://www.chefkoch.de/rs/s" + page + "/" + searchterm + "/Rezepte.html#more2"
 }
@@ -36,7 +38,7 @@ func (rs *RecipesSelection) subtitle() string {
 }
 
 func (rs *RecipesSelection) url() string {
-	return rs.sel.Find(".search-list-item > a").AttrOr("href", "")
+	return CKPrefix + rs.sel.Find(".search-list-item > a").AttrOr("href", "")
 }
 
 func (rs *RecipesSelection) thumbnail() string {
