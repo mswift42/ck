@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"net/http"
+	"strings"
 )
 
 type Recipe struct {
@@ -29,7 +30,9 @@ func (rs *RecipesSelection) title() string {
 }
 
 func (rs *RecipesSelection) subtitle() string {
-	return rs.sel.Find(".search-list-item-subtitle").Text()
+	subtitle := rs.sel.Find(".search-list-item-subtitle").Text()
+	trimmed := strings.Trim(subtitle, " \n")
+	return strings.Replace(trimmed, "\n", " ", -1)
 }
 
 func (rs *RecipesSelection) url() string {
