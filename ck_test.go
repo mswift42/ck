@@ -85,7 +85,7 @@ func TestNewRecipe(t *testing.T) {
 		}
 		if results[ind].Url != i.url {
 			t.Errorf("Expected url to be %q, got: %q", i.url,
-				results[ind].Subtitle)
+				results[ind].Url)
 		}
 		if results[ind].Thumbnail != i.thumbnail {
 			t.Errorf("Expected thumbnail to be %q, got: %q", i.thumbnail,
