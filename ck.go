@@ -48,10 +48,8 @@ func (rs *RecipesSelection) thumbnail() string {
 
 func (rs *RecipesSelection) rating() string {
 	rating := rs.sel.Find(".search-list-item-uservotes-stars").AttrOr("title", "")
-	ratregex := regexp.MustCompile(`(Bewertungen.*)(\d\.\d*)`)
 	digregex := regexp.MustCompile(`\d\.\d*`)
-	ratstring := ratregex.FindString(rating)
-	return digregex.FindString(ratstring)
+	return digregex.FindString(rating)
 
 }
 
