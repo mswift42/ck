@@ -42,7 +42,7 @@ func (rs *RecipesSelection) url() string {
 }
 
 func (rs *RecipesSelection) thumbnail() string {
-	return rs.sel.Find(".search-list-item-image > img").AttrOr("srcset", "")
+	return rs.sel.Find("picture > img").AttrOr("srcset", "")
 }
 
 func (rs *RecipesSelection) rating() string {
