@@ -53,9 +53,9 @@ var bohenrecipes = []struct {
 		"Bohnen waschen und die Spitzen abschneiden. Bohnenkraut, Knoblauch, zerdrückte Pfefferkörner und Salz mit Öl kurz anrösten. 2 Lite...",
 		"https://www.chefkoch.de/rezepte/563451154612271/Gruene-Bohnen-im-Speckmantel.html",
 		"https://static.chefkoch-cdn.de/rs/bilder/56345/gruene-bohnen-im-speckmantel-1124631-150x150.jpg",
-		"4.32",
+		"4.49",
 		"simpel",
-		"30 min",
+		"30 min.",
 	},
 }
 
