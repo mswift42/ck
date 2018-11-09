@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"net/http"
+	"regexp"
 	"strings"
 )
 
@@ -46,7 +47,12 @@ func (rs *RecipesSelection) thumbnail() string {
 }
 
 func (rs *RecipesSelection) rating() string {
-	return rs.sel.Find(".search-list-item-uservotes-stars").AttrOr("title", "")
+	rating := rs.sel.Find(".search-list-item-uservotes-stars").AttrOr("title", "")
+	ratregex := regexp.MustCompile(`(Bewertungen.*)(\d\.\d*)`)
+	digregex := regexp.MustCompile(`\d\.\d*`)
+	ratstring := ratregex.FindString(rating)
+	return digregex.FindString(ratstring)
+
 }
 
 func (rs *RecipesSelection) difficulty() string {
