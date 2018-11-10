@@ -57,6 +57,24 @@ var bohenrecipes = []struct {
 		"simpel",
 		"30 min.",
 	},
+	{
+		"Grüne Bohnen",
+		"Variante 1: Die Bohnen putzen. Zwiebeln und Knoblauch klein schneiden und in etwas Butter oder Margarine anbraten. Die Bohnen dazu...",
+		"https://www.chefkoch.de/rezepte/3166211471333987/Gruene-Bohnen.html",
+		"https://static.chefkoch-cdn.de/rs/bilder/316621/gruene-bohnen-938192-150x150.jpg",
+		"4.36",
+		"simpel",
+		"10 min.",
+	},
+	{
+		"Schupfnudel - Bohnen - Pfanne",
+		"Pfannengericht mit Bohnen, Schinken, Schupfnudeln und Crème fraiche",
+		"https://www.chefkoch.de/rezepte/1171381223217983/Schupfnudel-Bohnen-Pfanne.html",
+		"https://static.chefkoch-cdn.de/rs/bilder/117138/schupfnudel-bohnen-pfanne-1156413-150x150.jpg",
+		"4.37",
+		"normal",
+		"30 min.",
+	},
 }
 
 func TestNewRecipe(t *testing.T) {
