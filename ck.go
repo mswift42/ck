@@ -68,6 +68,14 @@ func newRecipe(sel *goquery.Selection) *Recipe {
 		rs.preptime()}
 }
 
+func allRecipes(doc *goquery.Document) []*Recipe {
+	var results []*Recipe
+	doc.Find(".search-list-item").Each(func(i int, s *goquery.Selection) {
+		results = append(results, newRecipe(s))
+	})
+	return results
+}
+
 func main() {
 	res, err := http.Get("https://www.chefkoch.de/rs/s0/bohnen/Rezepte.html#more2")
 	if err != nil {
@@ -78,7 +86,5 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	doc.Find(".search-list-item").Each(func(i int, s *goquery.Selection) {
-		fmt.Print(newRecipe(s))
-	})
+	fmt.Println(allRecipes(doc))
 }
