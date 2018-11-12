@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"net/http"
@@ -74,6 +75,10 @@ func allRecipes(doc *goquery.Document) []*Recipe {
 		results = append(results, newRecipe(s))
 	})
 	return results
+}
+
+func recipesToJson(recipes []*Recipe) ([]byte, error) {
+	return json.Marshal(recipes)
 }
 
 func main() {
