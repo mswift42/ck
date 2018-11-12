@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"github.com/PuerkitoBio/goquery"
 	"io/ioutil"
 	"testing"
@@ -39,7 +40,7 @@ func TestQueryURL(t *testing.T) {
 
 }
 
-var bohenrecipes = []struct {
+var bohnenrecipes = []struct {
 	title      string
 	subtitle   string
 	url        string
@@ -93,7 +94,7 @@ func TestNewRecipe(t *testing.T) {
 	if len(results) != 30 {
 		t.Error("Expected length of results to be 30, got: ", len(results))
 	}
-	for ind, i := range bohenrecipes {
+	for ind, i := range bohnenrecipes {
 		if results[ind].Title != i.title {
 			t.Errorf("Expected title to be %q, got: %q", i.title, results[ind].Title)
 		}
@@ -122,5 +123,27 @@ func TestNewRecipe(t *testing.T) {
 				results[ind].Preptime)
 		}
 
+	}
+}
+
+func TestRecipesToJSON(t *testing.T) {
+	file, err := ioutil.ReadFile("testhtml/bohnen.html")
+	if err != nil {
+		panic(err)
+	}
+	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(file))
+	if err != nil {
+		panic(err)
+	}
+	recipes := allRecipes(doc)
+	jsonrecipes, err := recipesToJson(recipes)
+	if err != nil {
+		t.Error("Expected error to be nil, got: ", err)
+	}
+	var unmarshalled []*Recipe
+	json.Unmarshal(jsonrecipes, &unmarshalled)
+	if unmarshalled[0].Title != bohnenrecipes[0].title {
+		t.Errorf("Expected Title to be %q, got %q",
+			bohnenrecipes[0].title, unmarshalled[0].Title)
 	}
 }
