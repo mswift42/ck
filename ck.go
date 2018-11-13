@@ -35,6 +35,13 @@ type RecipeDetailDocument struct {
 	doc *goquery.Document
 }
 
+func (r *Recipe) newRecipeDetail(rcd *RecipeDetailDocument) *RecipeDetail {
+	thumbnail := rcd.thumbnail()
+	Ingredients := rcd.ingredients()
+	method := rcd.method()
+	return &RecipeDetail{r, thumbnail, Ingredients, method}
+}
+
 const CKPrefix = "https://www.chefkoch.de"
 
 func queryUrl(searchterm string, page string) string {
