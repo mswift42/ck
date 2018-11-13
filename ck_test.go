@@ -176,8 +176,12 @@ func TestNewRecipeDetail(t *testing.T) {
 		t.Errorf("Expected title to be %q, got %q", bohnenrecipes[0].title,
 			grbohndetail.Recipe.Title)
 	}
-	if grbohndetail.Ingredients[0].Amount != "800 g" {
+	if grbohndetail.Ingredients[0].Amount != "800\u00a0g" {
 		t.Errorf("Expected amount to be '800 g', got: %q",
 			grbohndetail.Ingredients[0].Amount)
+	}
+	if grbohndetail.Ingredients[0].Ingredient != "Bohnen, frische" {
+		t.Errorf("Expected ingredient to be 'Bohnen, frische', got: %q",
+			grbohndetail.Ingredients[0].Ingredient)
 	}
 }
