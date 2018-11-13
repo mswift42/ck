@@ -74,8 +74,15 @@ func (rdd *RecipeDetailDocument) thumbnail() string {
 	return rdd.doc.Find(".slideshow-image").AttrOr("src", "")
 }
 
-func (rdd *RecipeDetailDocument) ingredients() []string {
-	ing := rdd.doc.Find(".ingredients")
+func (rdd *RecipeDetailDocument) ingredients() []*RecipeIngredient {
+	ingtable := rdd.doc.Find(".incredients>tbody>tr")
+	var ingredients []*RecipeIngredient
+	ingtable.Each(func(i int, s *goquery.Selection) {
+		amount := s.Find(".amount").Text()
+		ing := s.Next().Text()
+		ingredients = append(ingredients, &RecipeIngredient{amount, ing})
+	})
+	return ingredients
 }
 
 func (rs *RecipesSelection) difficulty() string {
