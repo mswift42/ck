@@ -20,10 +20,19 @@ type Recipe struct {
 }
 
 type RecipeDetail struct {
-	Recipe      *Recipe  `json:"recipe"`
-	Thumbnail   string   `json:"thumbnail"`
-	Ingredients []string `json:"ingredients"`
-	Method      string   `json:"method"`
+	Recipe      *Recipe             `json:"recipe"`
+	Thumbnail   string              `json:"thumbnail"`
+	Ingredients []*RecipeIngredient `json:"ingredients"`
+	Method      string              `json:"method"`
+}
+
+type RecipeIngredient struct {
+	Amount     string `json:"amount"`
+	Ingredient string `json:"ingredient"`
+}
+
+type RecipeDetailDocument struct {
+	doc *goquery.Document
 }
 
 const CKPrefix = "https://www.chefkoch.de"
@@ -59,6 +68,14 @@ func (rs *RecipesSelection) rating() string {
 	digregex := regexp.MustCompile(`\d\.\d*`)
 	return digregex.FindString(rating)
 
+}
+
+func (rdd *RecipeDetailDocument) thumbnail() string {
+	return rdd.doc.Find(".slideshow-image").AttrOr("src", "")
+}
+
+func (rdd *RecipeDetailDocument) ingredients() []string {
+	ing := rdd.doc.Find(".ingredients")
 }
 
 func (rs *RecipesSelection) difficulty() string {
