@@ -19,6 +19,13 @@ type Recipe struct {
 	Preptime   string `json:"preptime"`
 }
 
+type RecipeDetail struct {
+	Recipe      *Recipe  `json:"recipe"`
+	Thumbnail   string   `json:"thumbnail"`
+	Ingredients []string `json:"ingredients"`
+	Method      string   `json:"method"`
+}
+
 const CKPrefix = "https://www.chefkoch.de"
 
 func queryUrl(searchterm string, page string) string {
