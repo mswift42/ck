@@ -89,7 +89,7 @@ func TestNewRecipe(t *testing.T) {
 	}
 	var results []*Recipe
 	doc.Find(".search-list-item").Each(func(i int, sel *goquery.Selection) {
-		results = append(results, newRecipe(sel))
+		results = append(results, NewRecipe(sel))
 	})
 	if len(results) != 30 {
 		t.Error("Expected length of results to be 30, got: ", len(results))

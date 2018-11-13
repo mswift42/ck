@@ -69,7 +69,7 @@ func (rs *RecipesSelection) preptime() string {
 	return rs.sel.Find(".search-list-item-preptime").Text()
 }
 
-func newRecipe(sel *goquery.Selection) *Recipe {
+func NewRecipe(sel *goquery.Selection) *Recipe {
 	rs := &RecipesSelection{sel}
 	return &Recipe{rs.title(), rs.subtitle(),
 		rs.url(), rs.thumbnail(), rs.rating(), rs.difficulty(),
@@ -79,7 +79,7 @@ func newRecipe(sel *goquery.Selection) *Recipe {
 func allRecipes(doc *goquery.Document) []*Recipe {
 	var results []*Recipe
 	doc.Find(".search-list-item").Each(func(i int, s *goquery.Selection) {
-		results = append(results, newRecipe(s))
+		results = append(results, NewRecipe(s))
 	})
 	return results
 }
