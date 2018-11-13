@@ -85,8 +85,8 @@ func (rdd *RecipeDetailDocument) ingredients() []*RecipeIngredient {
 	ingtable := rdd.doc.Find(".incredients>tbody>tr")
 	var ingredients []*RecipeIngredient
 	ingtable.Each(func(i int, s *goquery.Selection) {
-		amount := s.Find(".amount").Text()
-		ing := s.Next().Text()
+		amount := strings.Trim(s.Find(".amount").Text(), " \n")
+		ing := strings.Trim(s.Find("td:nth-child(2)").Text(), " \n")
 		ingredients = append(ingredients, &RecipeIngredient{amount, ing})
 	})
 	return ingredients
