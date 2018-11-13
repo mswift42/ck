@@ -147,3 +147,37 @@ func TestRecipesToJSON(t *testing.T) {
 			bohnenrecipes[0].title, unmarshalled[0].Title)
 	}
 }
+
+func TestNewRecipeDetail(t *testing.T) {
+	file, err := ioutil.ReadFile("testhtml/bohnen.html")
+	if err != nil {
+		panic(err)
+	}
+	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(file))
+	if err != nil {
+		panic(err)
+	}
+	recipes := allRecipes(doc)
+	grbohn := recipes[0]
+	if grbohn.Title != bohnenrecipes[0].title {
+		t.Errorf("Expected title to be %q, got %q", bohnenrecipes[0].title,
+			grbohn.Title)
+	}
+	detailfile, err := ioutil.ReadFile("testhtml/gruene_bohnen_im_speckmantel.html")
+	if err != nil {
+		panic(err)
+	}
+	detaildoc, err := goquery.NewDocumentFromReader(bytes.NewReader(detailfile))
+	if err != nil {
+		panic(err)
+	}
+	grbohndetail := grbohn.newRecipeDetail(&RecipeDetailDocument{detaildoc})
+	if grbohndetail.Recipe.Title != bohnenrecipes[0].title {
+		t.Errorf("Expected title to be %q, got %q", bohnenrecipes[0].title,
+			grbohndetail.Recipe.Title)
+	}
+	if grbohndetail.Ingredients[0].Amount != "800 g" {
+		t.Errorf("Expected amount to be '800 g', got: %q",
+			grbohndetail.Ingredients[0].Amount)
+	}
+}
