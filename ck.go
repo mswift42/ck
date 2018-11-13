@@ -92,6 +92,10 @@ func (rdd *RecipeDetailDocument) ingredients() []*RecipeIngredient {
 	return ingredients
 }
 
+func (rdd *RecipeDetailDocument) method() string {
+	return rdd.doc.Find("#rezept-zubereitung").Text()
+}
+
 func (rs *RecipesSelection) difficulty() string {
 	return rs.sel.Find(".search-list-item-difficulty").Text()
 }
