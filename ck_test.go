@@ -156,9 +156,7 @@ var grueneImSpeckmantel = struct {
 
 	"https://static.chefkoch-cdn.de/ck.de/rezepte/56/56345/1124631-420x280-fix-gruene-bohnen-im-speckmantel.jpg",
 	[]*RecipeIngredient{
-		&RecipeIngredient{
-			"800\u00a0g", "Bohnen, frische"
-		},
+		{"800\u00a0g", "Bohnen, frische"},
 	},
 	"Bohnen waschen und die Spitzen abschneiden.↵Bohnenkraut, Knoblauch, zerdrückte Pfefferkörner und Salz mit Öl kurz anrösten. 2 Liter Wasser zugießen, 10 Min. kochen, durchsieben. Diese Brühe aufkochen und die Bohnen in 3 Portionen nacheinander sprudelnd garen. Schnell in kaltem Wasser abkühlen, in einem Tuch abtrocknen.↵↵Bohnen in Bacon einwickeln. Butter in einer feuerfesten Form erhitzen, die Bo…",
 }
@@ -191,11 +189,11 @@ func TestNewRecipeDetail(t *testing.T) {
 		t.Errorf("Expected title to be %q, got %q", bohnenrecipes[0].title,
 			grbohndetail.Recipe.Title)
 	}
-	if grbohndetail.Ingredients[0].Amount != "800\u00a0g" {
+	if grbohndetail.Ingredients[0].Amount != grueneImSpeckmantel.ingredients[0].Amount {
 		t.Errorf("Expected amount to be '800 g', got: %q",
 			grbohndetail.Ingredients[0].Amount)
 	}
-	if grbohndetail.Ingredients[0].Ingredient != "Bohnen, frische" {
+	if grbohndetail.Ingredients[0].Ingredient != grueneImSpeckmantel.ingredients[0].Ingredient {
 		t.Errorf("Expected ingredient to be 'Bohnen, frische', got: %q",
 			grbohndetail.Ingredients[0].Ingredient)
 	}
