@@ -148,6 +148,18 @@ func TestRecipesToJSON(t *testing.T) {
 	}
 }
 
+var gruene_im_speckmantel = []struct {
+	thumbnail   string
+	ingredients []*RecipeIngredient
+	Method      string
+}{
+	{
+		"https://static.chefkoch-cdn.de/ck.de/rezepte/56/56345/1124631-420x280-fix-gruene-bohnen-im-speckmantel.jpg",
+		[]*RecipeIngredient{&RecipeIngredient{"800\u00a0g", "Bohnen, frische"}},
+		"",
+	},
+}
+
 func TestNewRecipeDetail(t *testing.T) {
 	file, err := ioutil.ReadFile("testhtml/bohnen.html")
 	if err != nil {
