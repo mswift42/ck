@@ -151,7 +151,7 @@ func TestRecipesToJSON(t *testing.T) {
 var grueneImSpeckmantel = struct {
 	thumbnail   string
 	ingredients []*RecipeIngredient
-	Method      string
+	method      string
 }{
 
 	"https://static.chefkoch-cdn.de/ck.de/rezepte/56/56345/1124631-420x280-fix-gruene-bohnen-im-speckmantel.jpg",
@@ -196,6 +196,10 @@ func TestNewRecipeDetail(t *testing.T) {
 	if grbohndetail.Ingredients[0].Ingredient != grueneImSpeckmantel.ingredients[0].Ingredient {
 		t.Errorf("Expected ingredient to be 'Bohnen, frische', got: %q",
 			grbohndetail.Ingredients[0].Ingredient)
+	}
+	if grbohndetail.Method != grueneImSpeckmantel.method {
+		t.Errorf("Expected method to be %q, got: %q",
+			grueneImSpeckmantel.method, grbohndetail.Method)
 	}
 
 }
