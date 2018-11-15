@@ -93,7 +93,8 @@ func (rdd *RecipeDetailDocument) ingredients() []*RecipeIngredient {
 }
 
 func (rdd *RecipeDetailDocument) method() string {
-	return rdd.doc.Find("#rezept-zubereitung").Text()
+	text := rdd.doc.Find("#rezept-zubereitung").Text()
+	return strings.Trim(text, " \n")
 }
 
 func (rs *RecipesSelection) difficulty() string {
