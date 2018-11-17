@@ -20,7 +20,11 @@ type Recipe struct {
 }
 
 type RecipeDetail struct {
-	Recipe      *Recipe             `json:"recipe"`
+	title       string              `json:"title"`
+	rating      string              `json:"rating"`
+	difficulty  string              `json:"difficulty"`
+	preptime    string              `json:"preptime"`
+	cookingtime string              `json:"cookingtime"`
 	Thumbnail   string              `json:"thumbnail"`
 	Ingredients []*RecipeIngredient `json:"ingredients"`
 	Method      string              `json:"method"`
