@@ -3,10 +3,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/PuerkitoBio/goquery"
 	"net/http"
 	"regexp"
 	"strings"
+
+	"github.com/PuerkitoBio/goquery"
 )
 
 type Recipe struct {
@@ -20,11 +21,11 @@ type Recipe struct {
 }
 
 type RecipeDetail struct {
-	title       string              `json:"title"`
-	rating      string              `json:"rating"`
-	difficulty  string              `json:"difficulty"`
-	preptime    string              `json:"preptime"`
-	cookingtime string              `json:"cookingtime"`
+	Title       string              `json:"title"`
+	Rating      string              `json:"rating"`
+	Difficulty  string              `json:"difficulty"`
+	Preptime    string              `json:"preptime"`
+	Cookingtime string              `json:"cookingtime"`
 	Thumbnail   string              `json:"thumbnail"`
 	Ingredients []*RecipeIngredient `json:"ingredients"`
 	Method      string              `json:"method"`
