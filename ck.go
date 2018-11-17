@@ -47,6 +47,19 @@ func (r *Recipe) newRecipeDetail(rcd *RecipeDetailDocument) *RecipeDetail {
 	return &RecipeDetail{r, thumbnail, Ingredients, method}
 }
 
+func (rdd *RecipeDetailDocument) newRecipeDetail() *RecipeDetail {
+	title := rcd.title()
+	ingredients := rcd.ingredients()
+	method := rcd.method()
+	rating := rcd.rating()
+	difficulty := rcd.difficulty()
+	preptime := rcd.preptime()
+	cookingtime := rcd.cookingtime()
+	thumbnail := rcd.thumbnail()
+	return &RecipeDetail(title, rating, difficulty,
+		preptime, cookingtime, thumbnail, ingredients, method)
+}
+
 const CKPrefix = "https://www.chefkoch.de"
 
 func queryUrl(searchterm string, page string) string {
