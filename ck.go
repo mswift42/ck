@@ -124,6 +124,10 @@ func recipesToJson(recipes []*Recipe) ([]byte, error) {
 	return json.Marshal(recipes)
 }
 
+func recipeDetailToJson(rd *RecipeDetail) ([]byte, error) {
+	return json.Marshal(rd)
+}
+
 func main() {
 	res, err := http.Get("https://www.chefkoch.de/rs/s0/bohnen/Rezepte.html#more2")
 	if err != nil {
