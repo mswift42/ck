@@ -48,14 +48,14 @@ func (r *Recipe) newRecipeDetail(rcd *RecipeDetailDocument) *RecipeDetail {
 }
 
 func (rdd *RecipeDetailDocument) newRecipeDetail() *RecipeDetail {
-	title := rcd.title()
-	ingredients := rcd.ingredients()
-	method := rcd.method()
-	rating := rcd.rating()
-	difficulty := rcd.difficulty()
-	preptime := rcd.preptime()
-	cookingtime := rcd.cookingtime()
-	thumbnail := rcd.thumbnail()
+	title := rdd.title()
+	ingredients := rdd.ingredients()
+	method := rdd.method()
+	rating := rdd.rating()
+	difficulty := rdd.difficulty()
+	preptime := rdd.preptime()
+	cookingtime := rdd.cookingtime()
+	thumbnail := rdd.thumbnail()
 	return &RecipeDetail(title, rating, difficulty,
 		preptime, cookingtime, thumbnail, ingredients, method)
 }
