@@ -40,13 +40,6 @@ type RecipeDetailDocument struct {
 	doc *goquery.Document
 }
 
-func (r *Recipe) newRecipeDetail(rcd *RecipeDetailDocument) *RecipeDetail {
-	thumbnail := rcd.thumbnail()
-	Ingredients := rcd.ingredients()
-	method := rcd.method()
-	return &RecipeDetail{r, thumbnail, Ingredients, method}
-}
-
 func (rdd *RecipeDetailDocument) newRecipeDetail() *RecipeDetail {
 	title := rdd.title()
 	ingredients := rdd.ingredients()
