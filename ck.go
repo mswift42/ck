@@ -56,8 +56,8 @@ func (rdd *RecipeDetailDocument) newRecipeDetail() *RecipeDetail {
 	preptime := rdd.preptime()
 	cookingtime := rdd.cookingtime()
 	thumbnail := rdd.thumbnail()
-	return &RecipeDetail(title, rating, difficulty,
-		preptime, cookingtime, thumbnail, ingredients, method)
+	return &RecipeDetail{title, rating, difficulty,
+		preptime, cookingtime, thumbnail, ingredients, method}
 }
 
 const CKPrefix = "https://www.chefkoch.de"
@@ -113,6 +113,14 @@ func (rdd *RecipeDetailDocument) preptime() string {
 
 func (rdd *RecipeDetailDocument) cookingtime() string {
 	return rdd.prepinfo()[1]
+}
+
+func (rdd *RecipeDetailDocument) prepinfo() []string {
+	prep := rdd.doc.Find("#preparation-info").Text()
+	prep = strings.Replace(prep, "Arbeitszeit: ", "", 1)
+	prep = strings.Replace(prep, "Koch-/Backzeit: ", "", 1)
+	prep = strings.Replace(prep, "Schwierigkeitsgrad: ", "", 1)
+	return strings.Split(prep, "/")
 }
 
 func (rdd *RecipeDetailDocument) thumbnail() string {
