@@ -149,16 +149,26 @@ func TestRecipesToJSON(t *testing.T) {
 }
 
 var grueneImSpeckmantel = struct {
+	title       string
 	thumbnail   string
 	ingredients []*RecipeIngredient
 	method      string
+	rating      string
+	difficulty  string
+	cookingtime string
+	preptime    string
 }{
 
+	"Grüne Bohnen im Speckmantel",
 	"https://static.chefkoch-cdn.de/ck.de/rezepte/56/56345/1124631-420x280-fix-gruene-bohnen-im-speckmantel.jpg",
 	[]*RecipeIngredient{
 		{"800\u00a0g", "Bohnen, frische"},
 	},
 	"Bohnen waschen und die Spitzen abschneiden.\nBohnenkraut, Knoblauch, zerdrückte Pfefferkörner und Salz mit Öl kurz anrösten. 2 Liter Wasser zugießen, 10 Min. kochen, durchsieben. Diese Brühe aufkochen und die Bohnen in 3 Portionen nacheinander sprudelnd garen. Schnell in kaltem Wasser abkühlen, in einem Tuch abtrocknen.\n\nBohnen in Bacon einwickeln. Butter in einer feuerfesten Form erhitzen, die Bohnen reingeben (mit der Specknaht nach unten) und zugedeckt im Ofen bei 180 °C - 200 °C erhitzen (ca. 5 Minuten), dabei einmal wenden.",
+	"4.49",
+	"simpel",
+	"15 Min.",
+	"30 Min.",
 }
 
 var schupfnudel = struct {
