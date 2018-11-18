@@ -95,6 +95,26 @@ func (rs *RecipesSelection) rating() string {
 
 }
 
+func (rdd *RecipeDetailDocument) title() string {
+	return rdd.doc.Find(".page-title").Text()
+}
+
+func (rdd *RecipeDetailDocument) rating() string {
+	return rdd.doc.Find(".rating__average-rating").Text()
+}
+
+func (rdd *RecipeDetailDocument) difficulty() string {
+	return rdd.prepinfo()[2]
+}
+
+func (rdd *RecipeDetailDocument) preptime() string {
+	return rdd.prepinfo()[0]
+}
+
+func (rdd *RecipeDetailDocument) cookingtime() string {
+	return rdd.prepinfo()[1]
+}
+
 func (rdd *RecipeDetailDocument) thumbnail() string {
 	return rdd.doc.Find(".slideshow-image").AttrOr("src", "")
 }
