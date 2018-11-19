@@ -184,20 +184,6 @@ var schupfnudel = struct {
 }
 
 func TestNewRecipeDetail(t *testing.T) {
-	file, err := ioutil.ReadFile("testhtml/bohnen.html")
-	if err != nil {
-		panic(err)
-	}
-	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(file))
-	if err != nil {
-		panic(err)
-	}
-	recipes := allRecipes(doc)
-	grbohn := recipes[0]
-	if grbohn.Title != bohnenrecipes[0].title {
-		t.Errorf("Expected title to be %q, got %q", bohnenrecipes[0].title,
-			grbohn.Title)
-	}
 	detailfile, err := ioutil.ReadFile("testhtml/gruene_bohnen_im_speckmantel.html")
 	if err != nil {
 		panic(err)
@@ -206,10 +192,11 @@ func TestNewRecipeDetail(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	grbohndetail := grbohn.newRecipeDetail(&RecipeDetailDocument{detaildoc})
-	if grbohndetail.Recipe.Title != bohnenrecipes[0].title {
-		t.Errorf("Expected title to be %q, got %q", bohnenrecipes[0].title,
-			grbohndetail.Recipe.Title)
+	rdd := &RecipeDetailDocument{detaildoc}
+	grbohndetail := rdd.newRecipeDetail()
+	if grbohndetail.Title != grueneImSpeckmantel.title {
+		t.Errorf("Expected title to be %q, got %q", grueneImSpeckmantel.title,
+			grbohndetail.Title)
 	}
 	if grbohndetail.Ingredients[0].Amount != grueneImSpeckmantel.ingredients[0].Amount {
 		t.Errorf("Expected amount to be '800 g', got: %q",
@@ -222,31 +209,5 @@ func TestNewRecipeDetail(t *testing.T) {
 	if grbohndetail.Method != grueneImSpeckmantel.method {
 		t.Errorf("Expected method to be %q, got: %q",
 			grueneImSpeckmantel.method, grbohndetail.Method)
-	}
-	schupf := recipes[2]
-	detailfile, err = ioutil.ReadFile("testhtml/schupfnudel.html")
-	if err != nil {
-		panic(err)
-	}
-	detaildoc, err = goquery.NewDocumentFromReader(bytes.NewReader(detailfile))
-	if err != nil {
-		panic(err)
-	}
-	schupfdetail := schupf.newRecipeDetail(&RecipeDetailDocument{detaildoc})
-	if schupfdetail.Recipe.Title != bohnenrecipes[2].title {
-		t.Errorf("Expected title to be %q, got %q", bohnenrecipes[2].title,
-			schupfdetail.Recipe.Title)
-	}
-	if schupfdetail.Thumbnail != schupfnudel.thumbnail {
-		t.Errorf("Expected url of thumbanil to be %q, got %q",
-			schupfnudel.thumbnail, schupfdetail.Thumbnail)
-	}
-	if schupfdetail.Ingredients[0].Amount != schupfnudel.ingredients[0].Amount {
-		t.Errorf("Expected amount to be %q, got %q",
-			schupfnudel.ingredients[0].Amount, schupfdetail.Ingredients[0].Amount)
-	}
-	if schupfdetail.Method != schupfnudel.method {
-		t.Errorf("Expected method to be %q, got %q",
-			schupfnudel.method, schupfdetail.Method)
 	}
 }
