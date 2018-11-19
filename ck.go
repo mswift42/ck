@@ -112,7 +112,8 @@ func (rdd *RecipeDetailDocument) cookingtime() string {
 
 func (rdd *RecipeDetailDocument) prepinfo() []string {
 	prep := rdd.doc.Find("#preparation-info").Text()
-	prep = strings.Replace(prep, "Arbeitszeit: ", "", 1)
+	prep = strings.Replace(prep, "\n", "", -1)
+	prep = strings.Replace(prep, "Arbeitszeit:", "", 1)
 	prep = strings.Replace(prep, "Koch-/Backzeit: ", "", 1)
 	prep = strings.Replace(prep, "Schwierigkeitsgrad: ", "", 1)
 	return strings.Split(prep, "/")
