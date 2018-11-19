@@ -93,19 +93,21 @@ func (rdd *RecipeDetailDocument) title() string {
 }
 
 func (rdd *RecipeDetailDocument) rating() string {
-	return rdd.doc.Find(".rating__average-rating").Text()
+	rat := rdd.doc.Find(".rating__average-rating").Text()
+	rat = strings.Replace(rat, "Ø", "", 1)
+	return strings.Replace(rat, ",", ".", 1)
 }
 
 func (rdd *RecipeDetailDocument) difficulty() string {
-	return rdd.prepinfo()[2]
+	return strings.Trim(rdd.prepinfo()[2], " \n")
 }
 
 func (rdd *RecipeDetailDocument) preptime() string {
-	return rdd.prepinfo()[0]
+	return strings.Trim(rdd.prepinfo()[0], " \n")
 }
 
 func (rdd *RecipeDetailDocument) cookingtime() string {
-	return rdd.prepinfo()[1]
+	return strings.Trim(rdd.prepinfo()[1], " \n")
 }
 
 func (rdd *RecipeDetailDocument) prepinfo() []string {

@@ -220,7 +220,7 @@ func TestNewRecipeDetail(t *testing.T) {
 	}
 	if grbohndetail.Rating != grueneImSpeckmantel.rating {
 		t.Errorf("Expected rating to be %q, got: %q",
-			grueneImSpeckmantel.rating, grueneImSpeckmantel.rating)
+			grueneImSpeckmantel.rating, grbohndetail.Rating)
 	}
 	if grbohndetail.Preptime != grueneImSpeckmantel.preptime {
 		t.Errorf("Expected preptime to be %q, got: %q",
