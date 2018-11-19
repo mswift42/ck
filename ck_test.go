@@ -210,4 +210,24 @@ func TestNewRecipeDetail(t *testing.T) {
 		t.Errorf("Expected method to be %q, got: %q",
 			grueneImSpeckmantel.method, grbohndetail.Method)
 	}
+	if grbohndetail.Difficulty != grueneImSpeckmantel.difficulty {
+		t.Errorf("Expected difficulty to be %q, got: %q",
+			grueneImSpeckmantel.difficulty, grbohndetail.Difficulty)
+	}
+	if grbohndetail.Thumbnail != grueneImSpeckmantel.thumbnail {
+		t.Errorf("Expected thumbnail to be %q, got: %q",
+			grueneImSpeckmantel.thumbnail, grbohndetail.Thumbnail)
+	}
+	if grbohndetail.Rating != grueneImSpeckmantel.rating {
+		t.Errorf("Expected rating to be %q, got: %q",
+			grueneImSpeckmantel.rating, grueneImSpeckmantel.rating)
+	}
+	if grbohndetail.Preptime != grueneImSpeckmantel.preptime {
+		t.Errorf("Expected preptime to be %q, got: %q",
+			grueneImSpeckmantel.preptime, grbohndetail.Preptime)
+	}
+	if grbohndetail.Cookingtime != grueneImSpeckmantel.cookingtime {
+		t.Errorf("Expected cookingtime to be %q, got: %q",
+			grueneImSpeckmantel.cookingtime, grbohndetail.Cookingtime)
+	}
 }
