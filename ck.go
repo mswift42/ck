@@ -107,16 +107,23 @@ func (rdd *RecipeDetailDocument) preptime() string {
 }
 
 func (rdd *RecipeDetailDocument) cookingtime() string {
-	return strings.Trim(rdd.prepinfo()[1], " \n")
+	info := rdd.prepinfo()
+	regex := regexp.MustCompile(`(?:Koch.*\s)(?P<cooking_time>ca\.\s\d+\sMin)`)
+	return regex.FindStringSubmatch(info)[0]
 }
 
-func (rdd *RecipeDetailDocument) prepinfo() []string {
+func (rdd *RecipeDetailDocument) prepinfo() map[string]string {
 	prep := rdd.doc.Find("#preparation-info").Text()
-	prep = strings.Replace(prep, "\n", "", -1)
-	prep = strings.Replace(prep, "Arbeitszeit:", "", 1)
-	prep = strings.Replace(prep, "Koch-/Backzeit: ", "", 1)
-	prep = strings.Replace(prep, "Schwierigkeitsgrad: ", "", 1)
-	return strings.Split(prep, "/")
+	regex := regexp.MustCompile(`(?:Arb.*\s)(?:ca\s)(?P<prep_time>\d+)
+(?:Koc.*\s)(?:ca\s)(?P<cook_time>\d+)(?:Sch.*\s)(?P<difficulty>\w+)`)
+	result := make(map[string]string)
+	match := regex.FindStringSubmatch(prep)
+	for i, groupname := regex.SubexpNames() {
+		if i != 0 && groupname != "" {
+			result[groupname] = match[i]
+		}
+	}
+	return result
 }
 
 func (rdd *RecipeDetailDocument) thumbnail() string {
