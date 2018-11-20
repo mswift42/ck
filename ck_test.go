@@ -189,7 +189,7 @@ var schupfnudel = struct {
 	"Die Prinzessböhnchen für ca. 5 Min. in kochendem Wasser garen. \n\nDen Kochschinken würfeln und mit etwas Olivenöl in der Pfanne anbraten. Die Schupfnudeln hinzugeben und 5-8 Min. zusammen mit dem Schinken braten, bis die Schupfnudeln eine goldgelbe Farbe annehmen. Die Prinzessbohnen hinzu geben. Nun 1/8 l Fleischbrühe zugießen und mit Crème fraiche nach Belieben andicken. Nach Geschmack würzen. Als Abschluss die Käsescheiben oben auflegen, bis diese verlaufen. Sofort servieren.",
 	"4.37",
 	"normal",
-	"ca. 30 Min.",
+	"",
 	"ca. 30 Min.",
 }
 
@@ -239,5 +239,51 @@ func TestNewRecipeDetail(t *testing.T) {
 	if grbohndetail.Cookingtime != grueneImSpeckmantel.cookingtime {
 		t.Errorf("Expected cookingtime to be %q, got: %q",
 			grueneImSpeckmantel.cookingtime, grbohndetail.Cookingtime)
+	}
+	detailfile, err = ioutil.ReadFile("testhtml/schupfnudel.html")
+	if err != nil {
+		panic(err)
+	}
+	detaildoc, err = goquery.NewDocumentFromReader(bytes.NewReader(detailfile))
+	if err != nil {
+		panic(err)
+	}
+	rdd = &RecipeDetailDocument{detaildoc}
+	schupfdetail := rdd.newRecipeDetail()
+	if schupfdetail.Title != schupfnudel.title {
+		t.Errorf("Expected title to be %q, got %q", schupfnudel.title,
+			schupfdetail.Title)
+	}
+	if schupfdetail.Ingredients[0].Amount != schupfnudel.ingredients[0].Amount {
+		t.Errorf("Expected amount to be %q, got %q", schupfnudel.ingredients[0].Amount,
+			schupfdetail.Ingredients[0].Amount)
+	}
+	if schupfdetail.Ingredients[0].Ingredient != schupfnudel.ingredients[0].Ingredient {
+		t.Errorf("Expected ingredients to be %q, got %q",
+			schupfnudel.ingredients[0].Ingredient, schupfdetail.Ingredients[0].Ingredient)
+	}
+	if schupfdetail.Method != schupfnudel.method {
+		t.Errorf("Expected method to be %q, got %q",
+			schupfnudel.method, schupfdetail.Method)
+	}
+	if schupfdetail.Thumbnail != schupfnudel.thumbnail {
+		t.Errorf("Expected thumbnail to be %q, got %q",
+			schupfnudel.thumbnail, schupfdetail.Thumbnail)
+	}
+	if schupfdetail.Difficulty != schupfnudel.difficulty {
+		t.Errorf("Expected difficulty to be %q, got %q",
+			schupfnudel.difficulty, schupfdetail.Difficulty)
+	}
+	if schupfdetail.Rating != schupfnudel.rating {
+		t.Errorf("Expected rating to be %q, got %q",
+			schupfnudel.rating, schupfdetail.Rating)
+	}
+	if schupfdetail.Preptime != schupfnudel.preptime {
+		t.Errorf("Expected preptime to be %q, got %q",
+			schupfnudel.preptime, schupfdetail.Preptime)
+	}
+	if schupfdetail.Cookingtime != schupfnudel.cookingtime {
+		t.Errorf("Expected cooking time to be %q, got %q",
+			schupfnudel.cookingtime, schupfdetail.Cookingtime)
 	}
 }
