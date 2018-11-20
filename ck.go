@@ -108,7 +108,7 @@ func (rdd *RecipeDetailDocument) preptime(pi map[string]string) string {
 }
 
 func (rdd *RecipeDetailDocument) cookingtime(pi map[string]string) string {
-	return pi["cook_time"]
+	return pi["Kochzeit"]
 }
 
 func (rdd *RecipeDetailDocument) prepinfo() map[string]string {
