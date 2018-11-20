@@ -100,11 +100,11 @@ func (rdd *RecipeDetailDocument) rating() string {
 }
 
 func (rdd *RecipeDetailDocument) difficulty(pi map[string]string) string {
-	return pi["difficulty"]
+	return pi["Schwierigkeitsgrad"]
 }
 
 func (rdd *RecipeDetailDocument) preptime(pi map[string]string) string {
-	return pi["prep_time"]
+	return pi["Arbeitszeit"]
 }
 
 func (rdd *RecipeDetailDocument) cookingtime(pi map[string]string) string {
@@ -114,15 +114,14 @@ func (rdd *RecipeDetailDocument) cookingtime(pi map[string]string) string {
 func (rdd *RecipeDetailDocument) prepinfo() map[string]string {
 	prep := rdd.doc.Find("#preparation-info").Text()
 	prep = strings.Replace(prep, "\n", "", -1)
-	regex := regexp.MustCompile(`(?:"Arb".*\s)(?:"ca"\s)(?P<prep_time>\d+)
-(?:Koc.*\s)(?:ca\s)(?P<cook_time>\d+)(?:Sch.*\s)(?P<difficulty>\w+)`)
+	prep = strings.Replace(prep, "Koch-/Backzeit", "Kochzeit", 1)
+	prep = strings.Replace(prep, "keine Angabe", "NA", 1)
+	sections := strings.Split(prep, "/")
 	result := make(map[string]string)
-	match := regex.FindStringSubmatch(prep)
-	fmt.Println(match)
-	for i, groupname := range regex.SubexpNames() {
-		if i != 0 && groupname != "" {
-			result[groupname] = match[i]
-		}
+	for _, i := range sections {
+		trimmed := strings.Trim(i, " \n\t")
+		split := strings.Split(trimmed, ":")
+		result[split[0]] = strings.Trim(split[1], " \n")
 	}
 	return result
 }
