@@ -45,9 +45,10 @@ func (rdd *RecipeDetailDocument) newRecipeDetail() *RecipeDetail {
 	ingredients := rdd.ingredients()
 	method := rdd.method()
 	rating := rdd.rating()
-	difficulty := rdd.difficulty()
-	preptime := rdd.preptime()
-	cookingtime := rdd.cookingtime()
+	prepinfo := rdd.prepinfo()
+	difficulty := rdd.difficulty(prepinfo)
+	preptime := rdd.preptime(prepinfo)
+	cookingtime := rdd.cookingtime(prepinfo)
 	thumbnail := rdd.thumbnail()
 	return &RecipeDetail{title, rating, difficulty,
 		preptime, cookingtime, thumbnail, ingredients, method}
@@ -98,18 +99,16 @@ func (rdd *RecipeDetailDocument) rating() string {
 	return strings.Replace(rat, ",", ".", 1)
 }
 
-func (rdd *RecipeDetailDocument) difficulty() string {
-	return strings.Trim(rdd.prepinfo()[2], " \n")
+func (rdd *RecipeDetailDocument) difficulty(pi map[string]string) string {
+	return pi["difficulty"]
 }
 
-func (rdd *RecipeDetailDocument) preptime() string {
-	return strings.Trim(rdd.prepinfo()[0], " \n")
+func (rdd *RecipeDetailDocument) preptime(pi map[string]string) string {
+	return pi["prep_time"]
 }
 
-func (rdd *RecipeDetailDocument) cookingtime() string {
-	info := rdd.prepinfo()
-	regex := regexp.MustCompile(`(?:Koch.*\s)(?P<cooking_time>ca\.\s\d+\sMin)`)
-	return regex.FindStringSubmatch(info)[0]
+func (rdd *RecipeDetailDocument) cookingtime(pi map[string]string) string {
+	return pi["cook_time"]
 }
 
 func (rdd *RecipeDetailDocument) prepinfo() map[string]string {
@@ -118,7 +117,7 @@ func (rdd *RecipeDetailDocument) prepinfo() map[string]string {
 (?:Koc.*\s)(?:ca\s)(?P<cook_time>\d+)(?:Sch.*\s)(?P<difficulty>\w+)`)
 	result := make(map[string]string)
 	match := regex.FindStringSubmatch(prep)
-	for i, groupname := regex.SubexpNames() {
+	for i, groupname := range regex.SubexpNames() {
 		if i != 0 && groupname != "" {
 			result[groupname] = match[i]
 		}
