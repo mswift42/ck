@@ -113,10 +113,12 @@ func (rdd *RecipeDetailDocument) cookingtime(pi map[string]string) string {
 
 func (rdd *RecipeDetailDocument) prepinfo() map[string]string {
 	prep := rdd.doc.Find("#preparation-info").Text()
-	regex := regexp.MustCompile(`(?:Arb.*\s)(?:ca\s)(?P<prep_time>\d+)
+	prep = strings.Replace(prep, "\n", "", -1)
+	regex := regexp.MustCompile(`(?:"Arb".*\s)(?:"ca"\s)(?P<prep_time>\d+)
 (?:Koc.*\s)(?:ca\s)(?P<cook_time>\d+)(?:Sch.*\s)(?P<difficulty>\w+)`)
 	result := make(map[string]string)
 	match := regex.FindStringSubmatch(prep)
+	fmt.Println(match)
 	for i, groupname := range regex.SubexpNames() {
 		if i != 0 && groupname != "" {
 			result[groupname] = match[i]
