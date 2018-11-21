@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"github.com/PuerkitoBio/goquery"
 	"io/ioutil"
+	"reflect"
 	"testing"
 )
 
@@ -286,4 +287,38 @@ func TestNewRecipeDetail(t *testing.T) {
 		t.Errorf("Expected cooking time to be %q, got %q",
 			schupfnudel.cookingtime, schupfdetail.Cookingtime)
 	}
+}
+
+func TestNewRecipeDetailToJson(t *testing.T) {
+	file, err := ioutil.ReadFile("testhtml/schupfnudel.html")
+	if err != nil {
+		panic(err)
+	}
+	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(file))
+	if err != nil {
+		panic(err)
+	}
+	rdd := &RecipeDetailDocument{doc}
+	rd := rdd.newRecipeDetail()
+	marschalled, err := recipeDetailToJson(rd)
+	if err != nil {
+		panic(err)
+	}
+	var nrd *RecipeDetail
+	err = json.Unmarshal(marschalled, &nrd)
+	if err != nil {
+		panic(err)
+	}
+	if nrd.Cookingtime != rd.Cookingtime {
+		t.Errorf("Expected cookingtime of unmarschalled to be equal to original, got: %q",
+			nrd.Cookingtime)
+	}
+	if nrd.Method != rd.Method {
+		t.Error("Expected unmarschalled method to be equal to original, got: ",
+			nrd.Method)
+	}
+	if !reflect.DeepEqual(nrd, rd) {
+		t.Error("ecpected both interfaces to be equal.")
+	}
+
 }
