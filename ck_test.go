@@ -327,6 +327,52 @@ func TestNewRecipeDetail(t *testing.T) {
 		t.Errorf("Expected cooking time to be %q, got %q",
 			schupfnudel.cookingtime, schupfdetail.Cookingtime)
 	}
+	detailfile, err = ioutil.ReadFile("testhtml/gruene_bohnen_mit_speck.html")
+	if err != nil {
+		panic(err)
+	}
+	detaildoc, err = goquery.NewDocumentFromReader(bytes.NewReader(detailfile))
+	if err != nil {
+		panic(err)
+	}
+	rdd = &RecipeDetailDocument{detaildoc}
+	spdetail := rdd.newRecipeDetail()
+	if spdetail.Title != speckbohnen.title {
+		t.Errorf("Expected title to be %q, got %q",
+			speckbohnen.title, spdetail.Title)
+	}
+	if spdetail.Ingredients[0].Amount != speckbohnen.ingredients[0].Amount {
+		t.Errorf("Expected amount to be %q, got %q",
+			speckbohnen.ingredients[0].Amount, spdetail.Ingredients[0].Amount)
+	}
+	if spdetail.Ingredients[0].Ingredient != speckbohnen.ingredients[0].Ingredient {
+		t.Errorf("Expected ingredient to be %q, got %q",
+			speckbohnen.ingredients[0].Ingredient, spdetail.Ingredients[0].Ingredient)
+	}
+	if spdetail.Method != speckbohnen.method {
+		t.Errorf("Epected method to be %q, got \n%q",
+			speckbohnen.method, spdetail.Method)
+	}
+	if spdetail.Difficulty != speckbohnen.difficulty {
+		t.Errorf("Expected difficulty to be %q, got %q",
+			speckbohnen.difficulty, spdetail.Difficulty)
+	}
+	if spdetail.Thumbnail != speckbohnen.thumbnail {
+		t.Errorf("Expected thumbnail to be %q, got %q",
+			speckbohnen.thumbnail, spdetail.Thumbnail)
+	}
+	if spdetail.Rating != speckbohnen.rating {
+		t.Errorf("Expected rating to be %q, got %q",
+			speckbohnen.rating, spdetail.Rating)
+	}
+	if spdetail.Preptime != speckbohnen.preptime {
+		t.Errorf("Expected preptime to be %q, got %q",
+			speckbohnen.preptime, spdetail.Preptime)
+	}
+	if spdetail.Cookingtime != speckbohnen.cookingtime {
+		t.Errorf("Expected cookingtime to be %q, got %q",
+			speckbohnen.cookingtime, spdetail.Cookingtime)
+	}
 }
 
 func TestNewRecipeDetailToJson(t *testing.T) {
