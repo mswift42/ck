@@ -223,7 +223,7 @@ var speckbohnen = struct {
 	preptime    string
 }{
 	"Grüne Bohnen mit Speck",
-	"https://static.chefkoch-cdn.de/ck.de/rezepte/240/240661/1135575-960x720-gruene-bohnen-mit-speck.jpg",
+	"https://static.chefkoch-cdn.de/ck.de/rezepte/240/240661/1135575-420x280-fix-gruene-bohnen-mit-speck.jpg",
 	[]*RecipeIngredient{
 		{"500\u00a0g", "Bohnen, grüne, frisch oder TK"},
 	},
