@@ -212,6 +212,28 @@ var schupfnudel = struct {
 	"ca. 30 Min.",
 }
 
+var speckbohnen = struct {
+	title       string
+	thumbnail   string
+	ingredients []*RecipeIngredient
+	method      string
+	rating      string
+	difficulty  string
+	cookingtime string
+	preptime    string
+}{
+	"Grüne Bohnen mit Speck",
+	"https://static.chefkoch-cdn.de/ck.de/rezepte/240/240661/1135575-960x720-gruene-bohnen-mit-speck.jpg",
+	[]*RecipeIngredient{
+		{"500\u00a0g", "Bohnen, grüne, frisch oder TK"},
+	},
+	"Grüne Bohnen putzen, ca. 5 Min. in Salzwasser ankochen (bei TK nach Anleitung kochen). Speck würfeln und im Butter-Öl Gemisch kross anbraten. Bohnen, Speck und Bohnenkraut zusammen in einen Topf geben, pfeffern und 10-20 Min. bei kleiner Hitze ziehen lassen, gelegentlich umrühren. Wem es zu kräftig (salzig) ist, einfach weniger Speck nehmen.",
+	"4.67",
+	"normal",
+	"ca. 20 Min.",
+	"ca. 25 Min.",
+}
+
 func TestNewRecipeDetail(t *testing.T) {
 	detailfile, err := ioutil.ReadFile("testhtml/gruene_bohnen_im_speckmantel.html")
 	if err != nil {
