@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
+	"log"
 	"net/http"
 	"regexp"
 	"strings"
@@ -177,11 +177,6 @@ func recipeDetailToJson(rd *RecipeDetail) ([]byte, error) {
 	return json.Marshal(rd)
 }
 
-func init() {
-	http.HandleFunc("/search", searchHandler)
-	http.HandleFunc("/recipedetail", detailHandler)
-}
-
 func searchHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
@@ -209,14 +204,7 @@ func detailHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	res, err := http.Get("https://www.chefkoch.de/rs/s0/bohnen/Rezepte.html#more2")
-	if err != nil {
-		fmt.Println(err)
-	}
-	defer res.Body.Close()
-	doc, err := goquery.NewDocumentFromReader(res.Body)
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(allRecipes(doc))
+	http.HandleFunc("/search/", searchHandler)
+	http.HandleFunc("/recipedetail", detailHandler)
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
