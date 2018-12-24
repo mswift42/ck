@@ -177,6 +177,19 @@ func recipeDetailToJson(rd *RecipeDetail) ([]byte, error) {
 	return json.Marshal(rd)
 }
 
+func init() {
+	http.HandleFunc("/search", searchHandler)
+	http.HandleFunc("/recipedetail", detailHandler)
+}
+
+func searchHandler(w http.ResponseWriter, r *http.Request) {
+
+}
+
+func detailHandler(w http.ResponseWriter, r *http.Request) {
+
+}
+
 func main() {
 	res, err := http.Get("https://www.chefkoch.de/rs/s0/bohnen/Rezepte.html#more2")
 	if err != nil {
