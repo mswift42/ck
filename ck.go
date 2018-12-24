@@ -183,7 +183,25 @@ func init() {
 }
 
 func searchHandler(w http.ResponseWriter, r *http.Request) {
-
+	w.Header().Add("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	query := r.FormValue("query")
+	page := r.FormValue("page")
+	url := queryUrl(query, page)
+	res, err := http.Get(url)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+	defer res.Body.Close()
+	doc, err := goquery.NewDocumentFromReader(res.Body)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+	json, err := recipesToJson(allRecipes(doc))
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+	w.Write(json)
 }
 
 func detailHandler(w http.ResponseWriter, r *http.Request) {
