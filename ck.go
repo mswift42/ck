@@ -200,7 +200,24 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func detailHandler(w http.ResponseWriter, r *http.Request) {
-
+	w.Header().Add("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	recurl := r.FormValue("recipeurl")
+	res, err := http.Get(recurl)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+	defer res.Body.Close()
+	doc, err := goquery.NewDocumentFromReader(res.Body)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+	rdd := RecipeDetailDocument{doc}.newRecipeDetail()
+	json, err := recipeDetailToJson(rdd)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+	w.Write(json)
 }
 
 func main() {
