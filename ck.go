@@ -2,12 +2,11 @@ package main
 
 import (
 	"encoding/json"
-	"log"
+	"github.com/PuerkitoBio/goquery"
+	"google.golang.org/appengine"
 	"net/http"
 	"regexp"
 	"strings"
-
-	"github.com/PuerkitoBio/goquery"
 )
 
 type Recipe struct {
@@ -224,5 +223,5 @@ func detailHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/search/", searchHandler)
 	http.HandleFunc("/recipedetail", detailHandler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	appengine.Main()
 }
