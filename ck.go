@@ -212,7 +212,8 @@ func detailHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
-	rdd := RecipeDetailDocument{doc}.newRecipeDetail()
+	rddoc := RecipeDetailDocument{doc}
+	rdd := rddoc.newRecipeDetail()
 	json, err := recipeDetailToJson(rdd)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
