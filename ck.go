@@ -13,7 +13,7 @@ type Recipe struct {
 	Title      string `json:"title"`
 	Subtitle   string `json:"subtitle"`
 	Url        string `json:"url"`
-	Thumbnail  string `json:"thumbnai"`
+	Thumbnail  string `json:"thumbnail"`
 	Rating     string `json:"rating"`
 	Difficulty string `json:"difficulty"`
 	Preptime   string `json:"preptime"`
