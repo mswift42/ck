@@ -199,7 +199,7 @@ func searchHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func detailHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Add("Content-Type", "application/json")
+	w.Header().Add("Content-Type", "application/json; charset=utf-8")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	recurl := r.FormValue("recipeurl")
 	res, err := http.Get(recurl)
