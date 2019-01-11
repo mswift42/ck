@@ -108,7 +108,7 @@ var sahneRecipes = []struct {
 }{
 	{
 		"Pasta mit Sahne - Rahm - Zitronen - Sauce",
-		"↵ Pasta nach Packungsanleitung bissfest kochen. Abseihen und warm stellen.↵↵Inzwischen in einer großen Pfanne die Speckwürfel knuspr...↵ ",
+		"Pasta nach Packungsanleitung bissfest kochen. Abseihen und warm stellen.  Inzwischen in einer großen Pfanne die Speckwürfel knuspr...",
 		"https://www.chefkoch.de/rezepte/541291151424031/Pasta-mit-Sahne-Rahm-Zitronen-Sauce.html",
 		"https://static.chefkoch-cdn.de/rs/bilder/54129/pasta-mit-sahne-rahm-zitronen-sauce-976379-150x150.jpg",
 		"3.59",
