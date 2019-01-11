@@ -106,7 +106,15 @@ var sahneRecipes = []struct {
 	difficulty string
 	preptime   string
 }{
-	{},
+	{
+		"Pasta mit Sahne - Rahm - Zitronen - Sauce",
+		"↵ Pasta nach Packungsanleitung bissfest kochen. Abseihen und warm stellen.↵↵Inzwischen in einer großen Pfanne die Speckwürfel knuspr...↵ ",
+		"https://www.chefkoch.de/rezepte/541291151424031/Pasta-mit-Sahne-Rahm-Zitronen-Sauce.html",
+		"https://static.chefkoch-cdn.de/rs/bilder/54129/pasta-mit-sahne-rahm-zitronen-sauce-976379-150x150.jpg",
+		"3.59",
+		"normal",
+		"25 min.",
+	},
 }
 
 func TestNewRecipe(t *testing.T) {
@@ -149,11 +157,6 @@ func TestNewRecipe(t *testing.T) {
 			t.Errorf("Expected difficulty to be %q, got %q", i.difficulty,
 				results[ind].Difficulty)
 		}
-		//if results[ind].Preptime != i.preptime {
-		//	t.Errorf("Expected preptime to be %q, got %q", i.preptime,
-		//		results[ind].Preptime)
-		//}
-
 	}
 }
 
