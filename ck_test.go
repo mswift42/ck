@@ -97,6 +97,18 @@ var bohnenrecipes = []struct {
 	},
 }
 
+var sahneRecipes = []struct {
+	title      string
+	subtitle   string
+	url        string
+	thumbnail  string
+	rating     string
+	difficulty string
+	preptime   string
+}{
+	{},
+}
+
 func TestNewRecipe(t *testing.T) {
 	file, err := ioutil.ReadFile("testhtml/bohnen.html")
 	if err != nil {
