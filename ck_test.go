@@ -115,6 +115,15 @@ var sahneRecipes = []struct {
 		"normal",
 		"25 min.",
 	},
+	{
+		"Maulwurfkuchen mit Quark, saurer Sahne und Schlagsahne",
+		"Biskuitboden mit süßer, leicht säuerlicher Füllung und Bananen, für 14 Stück",
+		"https://www.chefkoch.de/rezepte/2022801328087014/Maulwurfkuchen-mit-Quark-saurer-Sahne-und-Schlagsahne.html",
+		"https://static.chefkoch-cdn.de/rs/bilder/202280/maulwurfkuchen-mit-quark-saurer-sahne-und-schlagsahne-1071992-150x150.jpg",
+		"3.6",
+		"normal",
+		"75 min.",
+	},
 }
 
 func TestNewRecipe(t *testing.T) {
