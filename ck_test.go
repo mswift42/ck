@@ -124,6 +124,15 @@ var sahneRecipes = []struct {
 		"normal",
 		"75 min.",
 	},
+	{
+		"Kleine Kartoffel - Speckknödel mit Pfifferlingen in Rahm",
+		"Speck in einer Pfanne kross auslassen. Kartoffeln waschen und in Salzwasser garen. Etwas abkühlen lassen, pellen und durch die K...",
+		"https://www.chefkoch.de/rezepte/1112271217262021/Kleine-Kartoffel-Speckknoedel-mit-Pfifferlingen-in-Rahm.html",
+		"https://static.chefkoch-cdn.de/rs/bilder/111227/kleine-kartoffel-speckknoedel-mit-pfifferlingen-in-rahm-117087-150x150.jpg",
+		"4.23",
+		"normal",
+		"45 min.",
+	},
 }
 
 func TestNewRecipe(t *testing.T) {
