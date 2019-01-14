@@ -135,10 +135,10 @@ var sahneRecipes = []struct {
 		"45 min.",
 	},
 	{
-		"Käse-Sahne-Dessert<",
+		"Käse-Sahne-Dessert",
 		"frisch-fruchtiges Dessert mit Quark, Joghurt und Früchten - gut vorzubereiten",
 		"https://www.chefkoch.de/rezepte/914011196708021/Kaese-Sahne-Dessert.html",
-		"https://static.chefkoch-cdn.de/rs/bilder/91401/kaese-sahne-dessert-1002666-164x140.jpg",
+		"https://static.chefkoch-cdn.de/rs/bilder/91401/kaese-sahne-dessert-1002666-150x150.jpg",
 		"4.6",
 		"simpel",
 		"25 min.",
