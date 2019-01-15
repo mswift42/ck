@@ -147,7 +147,7 @@ var sahneRecipes = []struct {
 		"Gebackene Quitten mit Schlagsahne",
 		"köstlich duftendes Dessert, einfach und schnell zubereitet!",
 		"https://www.chefkoch.de/rezepte/572911155974191/Gebackene-Quitten-mit-Schlagsahne.html",
-		"https://static.chefkoch-cdn.de/rs/bilder/57291/gebackene-quitten-mit-schlagsahne-1151615-164x140.jpg",
+		"https://static.chefkoch-cdn.de/rs/bilder/57291/gebackene-quitten-mit-schlagsahne-1151615-150x150.jpg",
 		"4.29",
 		"simpel",
 		"20 min.",
