@@ -204,7 +204,7 @@ func TestNewRecipe(t *testing.T) {
 		t.Error(err)
 	}
 	results = allRecipes(doc)
-	for ind, i := range sahneRecipes {
+	for ind, i := range sahneRecipes[:4] {
 		if results[ind].Title != i.title {
 			t.Errorf("Expected title to be %q, got: %q",
 				i.title, results[ind].Title)
@@ -233,6 +233,35 @@ func TestNewRecipe(t *testing.T) {
 			t.Errorf("Expected preptime to be %q, got: %q",
 				i.preptime, results[ind].Preptime)
 		}
+	}
+	quitten := results[10]
+	if quitten.Title != sahneRecipes[4].title {
+		t.Errorf("Expected title to be %q, got: %q",
+			sahneRecipes[4].title, quitten.Title)
+	}
+	if quitten.Subtitle != sahneRecipes[4].subtitle {
+		t.Errorf("Expected subtitle to be %q, got: %q",
+			sahneRecipes[4].subtitle, quitten.Subtitle)
+	}
+	if quitten.Thumbnail != sahneRecipes[4].thumbnail {
+		t.Errorf("Expected thumbnail to be %q, got: %q",
+			sahneRecipes[4].thumbnail, quitten.Thumbnail)
+	}
+	if quitten.Url != sahneRecipes[4].url {
+		t.Errorf("Expected url to be %q, got: %q",
+			sahneRecipes[4].url, quitten.Url)
+	}
+	if quitten.Rating != sahneRecipes[4].rating {
+		t.Errorf("Expected rating to be %q, got: %q",
+			sahneRecipes[4].rating, quitten.Rating)
+	}
+	if quitten.Difficulty != sahneRecipes[4].difficulty {
+		t.Errorf("Expected difficulty to be %q, got: %q",
+			sahneRecipes[4].difficulty, quitten.Difficulty)
+	}
+	if quitten.Preptime != sahneRecipes[4].preptime {
+		t.Errorf("Expected preptime to be %q, got: %q",
+			sahneRecipes[4].preptime, quitten.Preptime)
 	}
 }
 
