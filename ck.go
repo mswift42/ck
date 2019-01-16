@@ -2,11 +2,12 @@ package main
 
 import (
 	"encoding/json"
-	"github.com/PuerkitoBio/goquery"
-	"google.golang.org/appengine"
 	"net/http"
 	"regexp"
 	"strings"
+
+	"github.com/PuerkitoBio/goquery"
+	"google.golang.org/appengine"
 )
 
 type Recipe struct {
@@ -78,7 +79,11 @@ func (rs *RecipesSelection) url() string {
 }
 
 func (rs *RecipesSelection) thumbnail() string {
-	return rs.sel.Find("picture > img").AttrOr("srcset", "")
+	thumb := rs.sel.Find("picture > img").AttrOr("srcset", "")
+	if strings.HasPrefix(thumb, "data:image") {
+		thumb = rs.sel.Find("picture > img").AttrOr("data-srcset", "")
+	}
+	return thumb
 }
 
 func (rs *RecipesSelection) rating() string {
