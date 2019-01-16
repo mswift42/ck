@@ -152,6 +152,15 @@ var sahneRecipes = []struct {
 		"simpel",
 		"20 min.",
 	},
+	{
+		"Wodka - Sahne - Likör",
+		"nach Dooleysart",
+		"https://www.chefkoch.de/rezepte/381531124489612/Wodka-Sahne-Likoer.html",
+		"https://static.chefkoch-cdn.de/rs/bilder/38153/wodka-sahne-likoer-968928-150x150.jpg",
+		"4.54",
+		"simpel",
+		"15 min.",
+	},
 }
 
 func TestNewRecipe(t *testing.T) {
@@ -234,34 +243,36 @@ func TestNewRecipe(t *testing.T) {
 				i.preptime, results[ind].Preptime)
 		}
 	}
-	quitten := results[10]
-	if quitten.Title != sahneRecipes[4].title {
-		t.Errorf("Expected title to be %q, got: %q",
-			sahneRecipes[4].title, quitten.Title)
-	}
-	if quitten.Subtitle != sahneRecipes[4].subtitle {
-		t.Errorf("Expected subtitle to be %q, got: %q",
-			sahneRecipes[4].subtitle, quitten.Subtitle)
-	}
-	if quitten.Thumbnail != sahneRecipes[4].thumbnail {
-		t.Errorf("Expected thumbnail to be %q, got: %q",
-			sahneRecipes[4].thumbnail, quitten.Thumbnail)
-	}
-	if quitten.Url != sahneRecipes[4].url {
-		t.Errorf("Expected url to be %q, got: %q",
-			sahneRecipes[4].url, quitten.Url)
-	}
-	if quitten.Rating != sahneRecipes[4].rating {
-		t.Errorf("Expected rating to be %q, got: %q",
-			sahneRecipes[4].rating, quitten.Rating)
-	}
-	if quitten.Difficulty != sahneRecipes[4].difficulty {
-		t.Errorf("Expected difficulty to be %q, got: %q",
-			sahneRecipes[4].difficulty, quitten.Difficulty)
-	}
-	if quitten.Preptime != sahneRecipes[4].preptime {
-		t.Errorf("Expected preptime to be %q, got: %q",
-			sahneRecipes[4].preptime, quitten.Preptime)
+	initiallyHidden := results[10:12]
+	for ind, i := range sahneRecipes[4:] {
+		if initiallyHidden[ind].Title != i.title {
+			t.Errorf("Expected title to be %q, got: %q",
+				i.title, initiallyHidden[ind].Title)
+		}
+		if initiallyHidden[ind].Subtitle != i.subtitle {
+			t.Errorf("Expected subtitle to be %q, got: %q",
+				i.subtitle, initiallyHidden[ind].Subtitle)
+		}
+		if initiallyHidden[ind].Thumbnail != i.thumbnail {
+			t.Errorf("Expected thumbnail to be %q, got: %q",
+				i.thumbnail, initiallyHidden[ind].Thumbnail)
+		}
+		if initiallyHidden[ind].Url != i.url {
+			t.Errorf("Expected url to be %q, got: %q",
+				i.url, initiallyHidden[ind].Url)
+		}
+		if initiallyHidden[ind].Rating != i.rating {
+			t.Errorf("Expected rating to be %q, got: %q",
+				i.rating, initiallyHidden[ind].Rating)
+		}
+		if initiallyHidden[ind].Difficulty != i.difficulty {
+			t.Errorf("Expected difficulty to be %q, got: %q",
+				i.difficulty, initiallyHidden[ind].Difficulty)
+		}
+		if initiallyHidden[ind].Preptime != i.preptime {
+			t.Errorf("Expected preptime to be %q, got: %q",
+				i.preptime, initiallyHidden[ind].Preptime)
+		}
 	}
 }
 
