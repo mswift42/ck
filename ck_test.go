@@ -261,7 +261,7 @@ func TestNewRecipe(t *testing.T) {
 				i.preptime, results[ind].Preptime)
 		}
 	}
-	initiallyHidden := results[10:12]
+	initiallyHidden := results[10:]
 	for ind, i := range sahneRecipes[4:] {
 		if initiallyHidden[ind].Title != i.title {
 			t.Errorf("Expected title to be %q, got: %q",
