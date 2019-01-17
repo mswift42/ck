@@ -161,6 +161,24 @@ var sahneRecipes = []struct {
 		"simpel",
 		"15 min.",
 	},
+	{
+		"Sahne - Himbeer - Baiser",
+		"Die Baiser zerkrümeln. Sahne mit Sahnesteif schlagen. Baiser, Himbeeren, Sahne in dieser Reihenfolge in eine Schüssel schichten. M...",
+		"https://www.chefkoch.de/rezepte/108971045666750/Sahne-Himbeer-Baiser.html",
+		"https://static.chefkoch-cdn.de/rs/bilder/10897/sahne-himbeer-baiser-658054-150x150.jpg",
+		"4.44",
+		"simpel",
+		"15 min.",
+	},
+	{
+		"Grießpudding mit Sahne",
+		"Milch mit Sahne und Zucker mischen, aufkochen lassen und den Grieß hineinrühren. Hitze etwas zurückdrehen und unter ständigem Rühr...",
+		"https://www.chefkoch.de/rezepte/363341121848738/Griesspudding-mit-Sahne.html",
+		"https://static.chefkoch-cdn.de/rs/bilder/36334/griesspudding-mit-sahne-842003-150x150.jpg",
+		"4.36",
+		"simpel",
+		"10 min.",
+	},
 }
 
 func TestNewRecipe(t *testing.T) {
