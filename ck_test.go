@@ -179,6 +179,24 @@ var sahneRecipes = []struct {
 		"simpel",
 		"10 min.",
 	},
+	{
+		"Kokos - Sahne - Trüffel",
+		"ergibt ca. 30 Pralinen",
+		"https://www.chefkoch.de/rezepte/1001281205402579/Kokos-Sahne-Trueffel.html",
+		"https://static.chefkoch-cdn.de/rs/bilder/100128/kokos-sahne-trueffel-922397-150x150.jpg",
+		"4.25",
+		"simpel",
+		"30 min.",
+	},
+	{
+		"Dany & Sahne Schnitten",
+		"Eiweiß zu Schnee schlagen. Eigelb mit Zucker, Wasser und Öl schaumig rühren, danach Mehl, Backpulver und Kakao einrühren und den E...",
+		"https://www.chefkoch.de/rezepte/626271162978657/Dany-Sahne-Schnitten.html",
+		"https://static.chefkoch-cdn.de/rs/bilder/62627/dany-sahne-schnitten-435233-150x150.jpg",
+		"4.41",
+		"normal",
+		"15 min.",
+	},
 }
 
 func TestNewRecipe(t *testing.T) {
