@@ -1,1 +1,8 @@
 runtime: go111
+api_version: go1
+
+handlers:
+        - url: /search
+          script: _go_app
+        - url: /recipedetail
+          script: _go_app
