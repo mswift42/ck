@@ -7,7 +7,6 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
-	"google.golang.org/appengine"
 )
 
 type Recipe struct {
@@ -224,9 +223,9 @@ func detailHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Write(json)
 }
-
-func main() {
-	http.HandleFunc("/search/", searchHandler)
+func init() {
+	http.HandleFunc("/search", searchHandler)
 	http.HandleFunc("/recipedetail", detailHandler)
-	appengine.Main()
+}
+func main() {
 }
