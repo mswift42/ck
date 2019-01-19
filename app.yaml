@@ -2,7 +2,5 @@ runtime: go
 api_version: go1
 
 handlers:
-        - url: /search
-          script: _go_app
-        - url: /recipedetail
+        - url: /.*
           script: _go_app

@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"google.golang.org/appengine"
 	"net/http"
 	"regexp"
 	"strings"
@@ -223,9 +224,8 @@ func detailHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Write(json)
 }
-func init() {
+func main() {
 	http.HandleFunc("/search", searchHandler)
 	http.HandleFunc("/recipedetail", detailHandler)
-}
-func main() {
+	appengine.Main()
 }
