@@ -1,8 +1,7 @@
-package main
+package ck
 
 import (
 	"encoding/json"
-	"google.golang.org/appengine"
 	"net/http"
 	"regexp"
 	"strings"
@@ -227,5 +226,4 @@ func detailHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/search", searchHandler)
 	http.HandleFunc("/recipedetail", detailHandler)
-	appengine.Main()
 }
