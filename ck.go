@@ -6,7 +6,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/PuerkitoBio/goquery"
+
+	"github.com/mswift42/goquery"
 )
 
 type Recipe struct {
@@ -223,7 +224,8 @@ func detailHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Write(json)
 }
-func main() {
+func init() {
 	http.HandleFunc("/search", searchHandler)
 	http.HandleFunc("/recipedetail", detailHandler)
 }
+
